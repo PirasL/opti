@@ -8,10 +8,11 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
+  const byDateDesc = data?.focus.sort(
+    (objA, objB) => new Date(objA.date) - new Date(objB.date)
   );
   const nextCard = () => {
+    // setTimeout(() => setIndex(index < byDateDesc.length ? index + 1 : 0), 5000);
     setTimeout(
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
@@ -48,6 +49,7 @@ const Slider = () => {
                   key={uuid()}
                   type="radio"
                   name="radio-button"
+                  // checked={idx === radioIdx}
                   checked={index === radioIdx}
                   readOnly
                 />

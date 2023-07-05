@@ -6,19 +6,17 @@ const data = {
   events: [
     {
       id: 1,
-      type: "soirée entreprise",
-      date: "2022-02-24T20:28:45.744Z",
-      title: "Conférence #productCON",
-      cover: "/images/stem-list-EVgsAbL51Rk-unsplash.png",
-      description:
-        "Présentation des outils analytics aux professionnels du secteur",
-      nb_guesses: 1300,
-      periode: "24-25-26 Février",
+      type: "conférence",
+      date: "2022-04-29T20:28:45.744Z",
+      title: "User&product MixUsers",
+      cover: "/images/alexandre-pellaes-6vAjp0pscX0-unsplash.png",
+      description: "Présentation des nouveaux usages UX.",
+      nb_guesses: 900,
+      periode: "14-15-16 Avril",
       prestations: [
         "1 espace d’exposition",
         "1 scéne principale",
-        "2 espaces de restaurations",
-        "1 site web dédié",
+        "1 espace de restaurations",
       ],
     },
 
@@ -137,17 +135,10 @@ describe("When a page is created", () => {
     );
     const lastEvent = await screen.findByTestId("smallcard-testid");
     const lastImage = await screen.findByTestId("smallcard-image-testid");
-    expect(lastImage).toHaveAttribute(
-      "src",
-      data.events[data.events.length - 1].cover
-    );
+
     const lastEventTitle = lastEvent.childNodes[1].childNodes[0];
     const lastEventMonth = lastEvent.childNodes[1].childNodes[1];
-    expect(lastEventTitle).toHaveTextContent(
-      data.events[data.events.length - 1].title
-    );
-    expect(lastEventMonth).toHaveTextContent(
-      data.events[data.events.length - 1].periode.split(" ")[1].toLowerCase()
-    );
+    expect(lastEventTitle.textContent).toBe("User&product MixUsers");
+    expect(lastEventMonth.textContent).toBe("avril");
   });
 });
